@@ -28,7 +28,7 @@ public class UnidadController {
 
     @GetMapping("/crear_unidad")
     public String crearUnidad() {
-        return "/unidades/crearUnidad";
+        return "unidades/crearUnidad";
     }
 
     @PostMapping("/guardar_unidad")
@@ -52,7 +52,7 @@ public class UnidadController {
         model.addAttribute("unidad", unidad);
         //model.addAttribute("nombre", tema.getNombre());
         //model.addAttribute("descripcion", tema.getDescripcion());
-        return "/unidades/editarUnidad";
+        return "unidades/editarUnidad";
     }
 
     @PostMapping("/{idUnidad}/actualizar_unidad")
