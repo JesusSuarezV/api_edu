@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados</title>
+    <div th:replace="~{menu.html}"></div>
+    <div class="contenedor-principal" id="contenedor-move">
+        <a class="boton-volver" th:href="@{'/unidades/' + ${tema.unidad.id} + '/temas'}">VOLVER</a>
+        <div class="contenedor-play">
+            <div class="proyecto-play">
+                <div class="nombre">
+                    <a th:text="'RESULTADOS DE LA EVALUACIÓN SOBRE: ' + ${tema.nombre}"></a>
+                </div>
+                <div class="ubicacion">
+                    <a>PUNTUACION</a>
+                    <div class="nombre-ubicacion">
+                        <a th:text="${puntuacion}"></a>
+                    </div>
+                </div>
+                <div th:if="${nuevoPuntaje}" class="ubicacion">
+                    <a>OBSERVACION</a>
+                    <div class="nombre-ubicacion">
+                        <a>NUEVO MEJOR PUNTAJE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    </div>
+    <script th:src="@{/js/script.js}"></script>
+    </body>
+
+</html>

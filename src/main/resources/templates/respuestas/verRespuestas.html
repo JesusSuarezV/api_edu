@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Respuestas</title>
+    <div th:replace="~{menu.html}"></div>
+    <div class="contenedor-principal" id="contenedor-move">
+        <a class="boton-volver"
+           th:href="@{'/unidades/' + ${pregunta.tema.unidad.id} + '/temas/' + ${pregunta.tema.id} + '/preguntas'}">VOLVER</a>
+        <div class="contenedor-play">
+            <div class="proyecto-play">
+                <div class="nombre">
+                    <a>LISTADO DE RESPUESTAS</a>
+                </div>
+                <div class="ubicacion">
+                    <a>PREGUNTA</a>
+                    <div class="nombre-ubicacion">
+                        <a th:text="${pregunta.enunciado}"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <tr th:each="respuesta : ${respuestas}">
+            <div class="contenedor-play-subproyecto">
+                <div class="proyecto-play">
+                    <div class="contenedor-proyecto">
+                        <div class="nombre">
+                            <a th:text="${respuesta.enunciado}"></a>
+                        </div>
+                        <div class="logos-proyecto">
+                            <a th:href="@{'/unidades/' + ${pregunta.tema.unidad.id} + '/temas/' + ${pregunta.tema.id} + '/preguntas/' + ${pregunta.id} + '/respuestas/' + ${respuesta.id} + '/editar_respuesta'}"><img
+                                    class="icon-proyecto" th:src="@{/img/editar.png}"></a>
+                            <a th:href="@{'/unidades/' + ${pregunta.tema.unidad.id} + '/temas/' + ${pregunta.tema.id} + '/preguntas/' + ${pregunta.id} + '/respuestas/' + ${respuesta.id} + '/eliminar_respuesta'}"><img
+                                    class="icon-proyecto" th:src="@{/img/delete.png}"
+                                    onclick="return confirmarOcultar();"></a>
+                            <a title="Marcar respuesta como correcta"th:if="${!respuesta.correcta}"
+                               th:href="@{'/unidades/' + ${pregunta.tema.unidad.id} + '/temas/' + ${pregunta.tema.id} + '/preguntas/' + ${pregunta.id} + '/respuestas/' + ${respuesta.id} + '/establecer_correcta'}"><img
+                                    class="icon-proyecto" th:src="@{/img/correcta.png}"
+                                    onclick="return confirmarCorrecta();"></a>
+                            <a title="Esta respuesta ya esta marcada como correcta" th:if="${respuesta.correcta}"><img class="icon-proyecto" th:src="@{/img/current.png}"></a>
+
+                        </div>
+                    </div>
+                    <div class="ubicacion">
+                        <a>OBSERVACIÓN: </a>
+                        <div class="nombre-ubicacion">
+                            <a th:text="${respuesta.correcta} ? 'Respuesta Correcta' : 'Respuesta Incorrecta'"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br></br>
+        </tr>
+        <a class="boton-subproyecto" th:href="@{'/unidades/' + ${pregunta.tema.unidad.id} + '/temas/' + ${pregunta.tema.id} + '/preguntas/' + ${pregunta.id} + '/respuestas/crear_respuesta'}">CREAR RESPUESTA</a>
+    </div>
+    </div>
+    <script th:src="@{/js/script.js}"></script>
+    </body>
+
+</html>

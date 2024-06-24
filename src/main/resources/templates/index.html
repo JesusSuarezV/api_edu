@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div id="greenNotification" th:if="${param.exitoRegistro}" class="notification green">
+    <span>Su cuenta ha sido creada exitosamente</span>
+    <span class="close" onclick="closeNotification('greenNotification')">×</span>
+</div>
+
+
+<div class="pantalla-de-incio">
+    <div class="div">
+        <div class="overlap-group">
+            <div class="footer-redes"></div>
+            <img class="imagen-corte-inicio" src="../img/portada.png"/>
+            <a href="/unidades">
+                <div class="bottom-inicio"></div>
+                <div class="inicio-text">ENTRAR</div>
+            </a>
+            <img class="LICIBUILDER-text" src="../img/logo.png"/>
+            <!--  <div class="LICIBUILDER-text" >EJM EMPRESA</div> -->
+            <div class="cuadro-explicacion"></div>
+            <img class="rectangle" src="../img/rectangle-3.png"/>
+            <div class="text-wrapper">¿Qué es el proyecto APIEDU?</div>
+            <p class="p">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mi lacinia, blandit dui at, accumsan
+                turpis. Vestibulum placerat cursus turpis, sit amet sagittis justo venenatis non. Nam vitae fermentum
+                sem. Pellentesque vulputate ullamcorper lobortis. Sed lacus dui, tempor sit amet ex sit amet, fermentum
+                tincidunt lorem. Donec ac velit neque. Donec id egestas libero. Nam tincidunt eu turpis sed vulputate.
+            </p>
+            <div class="cuadro-explicacion-2"></div>
+            <div class="cuadro-explicacion-3"></div>
+            <img class="img" src="../img/rectangle-4.png"/>
+            <div class="text-wrapper-2">Meta</div>
+            <img class="img-sirve-para" src="../img/subida.png"/>
+            <img class="img-sirve-para-2" src="../img/lectura.png"/>
+            <p class="text-wrapper-3">
+                Fusce accumsan a justo id dapibus. In non leo enim. Vivamus nisl enim, mattis at iaculis et, laoreet at
+                eros. Pellentesque fringilla ex et metus tincidunt aliquam. Nunc porttitor nunc in consectetur egestas.
+                Sed sit amet augue et orci pretium ultrices id ut arcu. In at tincidunt leo. Class aptent taciti
+                sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla in velit sodales justo
+                laoreet aliquam. Proin eget libero varius lectus luctus tincidunt. Duis auctor justo libero, nec
+                tincidunt ex condimentum sit amet. Nulla mattis maximus eros a ullamcorper.
+            </p>
+            <img class="img-sirve-para-3" src="../img/evaluacion.png"/>
+            <div class="text-wrapper-4">CARGA</div>
+            <div class="text-wrapper-5">LECTURA</div>
+            <div class="text-wrapper-6">EVALUACIÓN</div>
+        </div>
+        <div class="overlap">
+            <img class="element" src="../img/logo_2.png"/>
+        </div>
+          <div class="overlap-2">
+              <!--  <img class="ellipse" src="../img/ellipse-1.png"/>
+               <img class="ellipse-2" src="../img/ellipse-2.png"/>
+               <img class="ellipse-3" src="../img/ellipse-3.png"/>-->
+           </div>
+     </div>
+ </div>
+ <script src="../js/script.js"></script>
+ </body>
+ </html>

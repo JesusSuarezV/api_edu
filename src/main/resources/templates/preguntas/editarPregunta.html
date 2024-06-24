@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Pregunta</title>
+    <div th:replace="~{menu.html}"></div>
+    <div class="contenedor">
+
+        <form th:action="@{'/unidades/' + ${pregunta.tema.unidad.id} + '/temas/' + ${pregunta.tema.id} + '/preguntas/' + ${pregunta.id} + '/actualizar_pregunta'}" method="POST">
+            <input type="hidden" th:field="*{pregunta.id}">
+            <input type="hidden" th:field="*{pregunta.tema.id}">
+            <div class="formulario">
+                <div class="contenedor-formulario">
+                    <div class="nombre-proyecto">
+                        <label for="nombre-proyecto">ENUNCIADO DE LA PREGUNTA: </label>
+                    </div>
+                    <div class="texto">
+                        <input class="cuadro-texto" input type="text" id="enunciado" name="enunciado" th:value="${pregunta.enunciado}" required>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="botones">
+                <button type="submit" class="boton boton-verde">GUARDAR</button>
+                <a th:href="@{'/unidades/' + ${pregunta.tema.unidad.id} + '/temas/' + ${pregunta.tema.id} + '/preguntas'}">
+                    <button type="button" class="boton boton-rojo">CANCELAR</button>
+                </a>
+        </form>
+    </div>
+    </div>
+    <script th:src="@{/js/script.js}"></script>
+    </body>
+
+</html>

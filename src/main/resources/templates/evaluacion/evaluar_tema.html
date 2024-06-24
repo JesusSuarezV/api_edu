@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación del Tema</title>
+    <div th:replace="~{menu.html}"></div>
+    <div class="contenedor-principal" id="contenedor-move">
+        <a class="boton-volver" th:href="@{'/unidades/' + ${tema.unidad.id} + '/temas' }">VOLVER</a>
+        <form id="evaluacionForm"
+              th:action="@{'/unidades/' + ${tema.unidad.id} + '/temas/' + ${tema.id} + '/evaluacion/calificar'}"
+              method="POST">
+            <div class="formulario">
+                <div class="contenedor-play">
+                    <div class="proyecto-play">
+                        <div class="nombre">
+                            <a>EVALUACION</a>
+                        </div>
+                        <div class="ubicacion">
+                            <a>TEMA</a>
+                            <div class="nombre-ubicacion">
+                                <a th:text="${tema.nombre}"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <tr th:each="pregunta, preguntaStat : ${preguntas}" id="pregunta-${preguntaStat.index}">
+                    <td>
+                        <div class="contenedor-play-subproyecto">
+                            <div class="proyecto-play">
+                                <div class="contenedor-proyecto">
+                                    <div class="pregunta">
+                                        <a th:text="${pregunta.enunciado}"></a>
+                                    </div>
+                                </div>
+                                <div th:each="respuesta, respuestaStat : ${service.obtenerRespuestas(pregunta)}"
+                                     class="contenedor-proyecto">
+                                    <div class="respuesta">
+                                        <a th:text="${respuesta.enunciado}"></a>
+                                        <input type="checkbox" th:data-question-id="${pregunta.id}"
+                                               name="respuestasSeleccionadas"
+                                               th:value="${respuesta.id}" class="respuesta-checkbox">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </td>
+                </tr>
+
+                <button type="submit" class="boton-subproyecto" id="boton-submit">TERMINAR INTENTO</button>
+
+
+        </form>
+
+    </div>
+    </div>
+    <script th:src="@{/js/test.js}"></script>
+    <script th:src="@{/js/test2.js}"></script>
+    <script th:src="@{/js/script.js}"></script>
+    </body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Temas disponibles</title>
+    <div th:replace="~{menu.html}"></div>
+
+    <div class="contenedor">
+        <tr th:each="unidad : ${unidades}">
+            <div class="cuadro-proyectos">
+                <img src="../img/proyectos.png">
+                <div class="proyecto">
+                    <div class="nombre">
+                        <a th:text="${unidad.nombre}"></a>
+                    </div>
+                    <div class="logos-proyecto">
+                        <a th:href="@{'/unidades/' + ${unidad.id} + '/temas'}"><img class="icon-proyecto"
+                                                                                              th:src="@{/img/play.png}"></a>
+                        <a sec:authorize="hasAuthority('PROFESOR') or hasAuthority('SADMIN')" th:href="@{'/unidades/' + ${unidad.id} + '/eliminar_unidad'}"
+                           onclick="return confirmarOcultar();"><img class="icon-proyecto"
+                                                                     src="../../img/delete.png"></a>
+                        <a sec:authorize="hasAuthority('PROFESOR') or hasAuthority('SADMIN')" th:href="@{'/unidades/' + ${unidad.id} + '/editar_unidad'}"><img class="icon-proyecto"
+                                                                                        src="../../img/editar.png"></a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+        </tr>
+
+    </div>
+    </div>
+    <script th:src="@{/js/script.js}"></script>
+    </body>
+
+</html>

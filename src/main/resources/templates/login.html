@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Inicio de Sesión</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/inicio.css">
+    <link rel="stylesheet" href="../css/proyectos.css">
+    <script src="https://kit.fontawesome.com/43d3343120.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<form id="cuadro" th:action="@{/iniciar_sesion}" method="post">
+    <div id="redNotification" th:if="${param.error}" class="notification red">
+        <span>Usuario o Contraseña Invalidos</span>
+        <span class="close" onclick="closeNotification('redNotification')">×</span>
+    </div>
+    <a class="linkcasa" href="/	">
+        <img class="casita" src="../img/inicio.png">
+    </a>
+    <img class="imagen" src="../img/usuario.png" id="imagen">
+    <br>
+    <label for="username">
+        <i class="fa-solid fa-user"></i>
+        <input required autofocus="autofocus" placeholder="CORREO ELECTRONICO" type="email" id="username"
+               name="username">
+    </label>
+    <br>
+    <label for="password">
+        <i class="fa-solid fa-lock"></i>
+        <input id="password" type="password" name="password" required autofocus="autofocus" placeholder="CONTRASEÑA">
+    </label>
+    <br>
+    <a th:href="@{/registrarse}" class="link">¿NO TIENES CUENTA? REGISTRATE</a>
+    <br>
+    <button id="login" class="boton-login">INICIAR SESIÓN</button>
+    <br>
+</form>
+<script src="../js/script.js"></script>
+</body>
+
+</html>

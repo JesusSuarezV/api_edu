@@ -1,0 +1,43 @@
+<!-- CSS only -->
+<link rel="stylesheet" th:href="@{/css/estilos.css}" xmlns:sec="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" th:href="@{/css/proyectos.css}">
+<script src="https://kit.fontawesome.com/43d3343120.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body id="body">
+<nav class="navegacion">
+    <div class="icon-user">
+        <a href="#">
+            <img th:src="@{/img/usuario.png}">
+        </a>
+        <div class="icon-responsive">
+            <i class="fa-solid fa-bars" style="color: #ffff;" id="btn-open"></i>
+        </div>
+    </div>
+
+    <form th:action="@{/cerrar_sesion}" method="POST" class="icon-logout">
+        <input type="image" class="icon-busqueda" th:src="@{/img/logout.png}">
+    </form>
+
+</nav>
+<div class="cuerpo">
+    <div class="menu-principal" id="menu-principal">
+        <ul class="lista-principal-menu" id="lista-close">
+            <li class="lista-principal lista-principal--click">
+                <div class="lista-item">
+                    <a class="lista-link" href="/unidades">VER UNIDADES</a>
+                </div>
+            </li>
+            <li sec:authorize="hasAuthority('PROFESOR') or hasAuthority('SADMIN')" class="lista-principal lista-principal--click">
+                <div class="lista-item">
+                    <a class="lista-link" href="/unidades/crear_unidad">CREAR UNIDAD</a>
+                </div>
+            </li>
+            <li sec:authorize="hasAuthority('SADMIN')" class="lista-principal lista-principal--click">
+                <div class="lista-item">
+                    <a class="lista-link" href="/usuarios">GESTIONAR USUARIOS</a>
+                </div>
+            </li>
+        </ul>
+    </div>

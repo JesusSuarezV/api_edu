@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Recursos</title>
+    <div th:replace="~{menu.html}"></div>
+    <div class="contenedor-principal" id="contenedor-move">
+        <a class="boton-volver" th:href="@{'/unidades/' + ${tema.unidad.id} + '/temas' }">VOLVER</a>
+        <div class="contenedor-play">
+            <div class="proyecto-play">
+                <div class="nombre">
+                    <a>LISTADO DE RECURSOS</a>
+                </div>
+                <div class="ubicacion">
+                    <a>TEMA</a>
+                    <div class="nombre-ubicacion">
+                        <a th:text="${tema.nombre}"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <tr th:each="recurso : ${recursos}">
+            <div class="contenedor-play-subproyecto">
+                <div class="proyecto-play">
+                    <div class="contenedor-proyecto">
+                        <div class="nombre">
+                            <a th:text="${recurso.nombre}"></a>
+                        </div>
+                        <div class="logos-proyecto">
+                            <a th:href="@{'/unidades/' + ${tema.unidad.id} + '/temas/' + ${tema.id} + '/recursos/' + ${recurso.id} + '/descargar_recurso'}"><img class="icon-proyecto" th:src="@{/img/descarga.png}"></a>
+                            <a sec:authorize="hasAuthority('PROFESOR') or hasAuthority('SADMIN')" th:href="@{'/unidades/' + ${tema.unidad.id} + '/temas/' + ${tema.id} + '/recursos/' + ${recurso.id} + '/eliminar_recurso'}" onclick="return confirmarOcultar();"><img class="icon-proyecto" th:src="@{/img/delete.png}"></a>
+                        </div>
+                    </div>
+                    <div class="ubicacion">
+                        <a  th:text="TIPO"></a>
+                        <div class="nombre-ubicacion">
+                            <a th:text="${recurso.tipo}"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br></br>
+        </tr>
+
+
+        <form sec:authorize="hasAuthority('PROFESOR') or hasAuthority('SADMIN')" id="archivoForm" th:action="@{'/unidades/' + ${tema.unidad.id} + '/temas/' + ${tema.id} + '/recursos/subir_recurso'}" method="post">
+            <input type="file" name="archivo" id="archivo" style="display: none;" required>
+            <label for="archivo" id="archivoLabel" class="boton-subproyecto">SUBIR RECURSO<label>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+
+
+    </div>
+    </div>
+    <script th:src="@{/js/script.js}"></script>
+    </body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Temas</title>
+    <div th:replace="~{menu.html}"></div>
+    <div class="contenedor-principal" id="contenedor-move">
+        <a class="boton-volver" th:href="@{/unidades}">VOLVER</a>
+        <div class="contenedor-play">
+            <div class="proyecto-play">
+                <div class="nombre">
+                    <a th:text="${unidad.nombre}"></a>
+                </div>
+                <div class="ubicacion">
+                    <a>DESCRIPCIÓN</a>
+                    <div class="nombre-ubicacion">
+                        <a th:text="${unidad.descripcion}"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <tr th:each="tema : ${temas}">
+            <div class="contenedor-play-subproyecto">
+                <div class="proyecto-play">
+                    <div class="contenedor-proyecto">
+                        <div class="nombre">
+                            <a th:text="${tema.nombre}"></a>
+                        </div>
+                        <div class="logos-proyecto">
+
+                            <a th:href="@{'/unidades/' + ${unidad.id} + '/temas/' + ${tema.id} + '/recursos'}" title="Recursos disponibles"><img class="icon-proyecto" src="../../img/doc.png"></a>
+                            <a sec:authorize="hasAuthority('ESTUDIANTE')" th:href="@{'/unidades/' + ${unidad.id} + '/temas/' + ${tema.id} + '/evaluacion'}" title="Realizar evaluación"><img class="icon-proyecto" src="../../img/test.png"></a>
+                            <a sec:authorize="hasAuthority('PROFESOR') or hasAuthority('SADMIN')" th:href="@{'/unidades/' + ${unidad.id} + '/temas/' + ${tema.id} + '/preguntas'}" title="Preguntas para la prueba de este tema "><img class="icon-proyecto" src="../../img/pregunta.png"></a>
+                            <a sec:authorize="hasAuthority('PROFESOR') or hasAuthority('SADMIN')" th:href="@{'/unidades/' + ${unidad.id} + '/temas/' + ${tema.id} + '/editar_tema'}"><img class="icon-proyecto" src="../../img/editar.png"></a>
+                            <a sec:authorize="hasAuthority('PROFESOR') or hasAuthority('SADMIN')" th:href="@{'/unidades/' + ${unidad.id} + '/temas/' + ${tema.id} + '/eliminar_tema'}" onclick="return confirmarOcultar();"><img class="icon-proyecto" src="../../img/delete.png"></a>
+                        </div>
+                    </div>
+                    <div class="ubicacion">
+                        <a  th:text="DESCRIPCION"></a>
+                        <div class="nombre-ubicacion">
+                            <a th:text="${tema.descripcion}"></a>
+                        </div>
+                    </div>
+                    <div class="ubicacion" sec:authorize="hasAuthority('ESTUDIANTE')">
+                        <a>MEJOR CALIFICACIÓN</a>
+                        <div class="nombre-ubicacion">
+                            <a th:text="${service.obtenerPuntaje(usuario, tema)}"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br></br>
+        </tr>
+        <a sec:authorize="hasAuthority('PROFESOR') or hasAuthority('SADMIN')" class="boton-subproyecto" th:href="@{'/unidades/' + ${unidad.id} + '/temas/crear_tema'}">CREAR TEMA</a>
+    </div>
+    </div>
+    <script th:src="@{/js/script.js}"></script>
+    </body>
+
+</html>
